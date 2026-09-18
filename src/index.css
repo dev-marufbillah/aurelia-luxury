@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-playfair: 'Playfair Display', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+
+  /* Aurelia Brand Colors */
+  --color-aurelia-black:  #0B0B0B;
+  --color-aurelia-deep:   #111111;
+  --color-aurelia-card:   #1A1A1A;
+  --color-aurelia-border: #2A2A2A;
+  --color-aurelia-ivory:  #F5F1E8;
+  --color-aurelia-cream:  #FAF8F4;
+  --color-aurelia-gold:   #C6A15B;
+  --color-aurelia-gold-light: #D4B579;
+  --color-aurelia-gold-dark:  #A8883D;
+  --color-aurelia-white:  #FFFFFF;
+  --color-aurelia-muted:  #888888;
+  --color-aurelia-muted2: #555555;
+
+  /* Admin palette (keep for Admin Panel) */
+  --color-gold-50:  #fdf8ed;
+  --color-gold-300: #edc25c;
+  --color-gold-400: #d7b06c;
+  --color-gold-500: #C6A15B;
+  --color-gold-600: #a98546;
+  --color-gold-700: #8c6d39;
+
+  --color-luxury-dark:    #0B0B0B;
+  --color-luxury-darker:  #050505;
+  --color-luxury-card:    #141414;
+  --color-luxury-accent:  #C6A15B;
+  --color-luxury-text:    #F5F1E8;
+  --color-luxury-muted:   #8b8a88;
+  --color-luxury-border:  #222222;
+  --color-luxury-success: #4ade80;
+  --color-luxury-warning: #fbbf24;
+  --color-luxury-danger:  #f87171;
+  --color-luxury-info:    #60a5fa;
+}
+
+/* ─── Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #050505;
+  color: #F5F1E8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Storefront body override */
+.storefront-body {
+  background-color: #FFFFFF;
+  color: #0B0B0B;
+}
+
+/* ─── Fonts ─────────────────────────────────────────── */
+.font-playfair   { font-family: 'Playfair Display', serif; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+
+/* ─── Scrollbars ────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2A2A2A transparent;
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Transitions ───────────────────────────────────── */
+.transition-slow  { transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.transition-xslow { transition: all 1.0s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ─── Keyframes ─────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.96);  }
+  to   { opacity: 1; transform: scale(1);     }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes pulse-gold {
+  0%,100% { box-shadow: 0 0 0 0 rgba(198,161,91,0.4); }
+  50%      { box-shadow: 0 0 0 8px rgba(198,161,91,0);  }
+}
+@keyframes kenburns {
+  0%   { transform: scale(1)    translateX(0);      }
+  100% { transform: scale(1.08) translateX(-1.5%);  }
+}
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 3rem; }
+}
+
+/* ─── Animation classes ─────────────────────────────── */
+.animate-fade-up       { animation: fadeUp        0.7s ease-out forwards; }
+.animate-fade-in       { animation: fadeIn        0.4s ease-out forwards; }
+.animate-fade-in-scale { animation: fadeInScale   0.5s ease-out forwards; }
+.animate-slide-in      { animation: slideInLeft   0.35s ease-out forwards; }
+.animate-slide-in-right{ animation: slideInRight  0.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+.animate-kenburns      { animation: kenburns      8s ease-out forwards; }
+.animate-line-grow     { animation: lineGrow      0.8s ease-out 0.4s forwards; width:0; }
+
+.pulse-gold { animation: pulse-gold 2s infinite; }
+
+.shimmer {
+  background: linear-gradient(90deg,
+    rgba(198,161,91,0)    0%,
+    rgba(198,161,91,0.15) 50%,
+    rgba(198,161,91,0)    100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+/* ─── Delay helpers ─────────────────────────────────── */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* ─── Storefront utilities ──────────────────────────── */
+.aurelia-btn-gold {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 2rem; height: 3rem;
+  background: #C6A15B; color: #0B0B0B;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  border: 1px solid #C6A15B;
+  transition: all 0.4s ease;
+}
+.aurelia-btn-gold:hover {
+  background: transparent; color: #C6A15B;
+}
+
+.aurelia-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 2rem; height: 3rem;
+  background: transparent; color: #F5F1E8;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  border: 1px solid rgba(245,241,232,0.35);
+  transition: all 0.4s ease;
+}
+.aurelia-btn-outline:hover {
+  background: rgba(245,241,232,0.08);
+  border-color: rgba(245,241,232,0.6);
+}
+
+.aurelia-btn-dark {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 2rem; height: 3rem;
+  background: #0B0B0B; color: #F5F1E8;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  border: 1px solid #0B0B0B;
+  transition: all 0.4s ease;
+}
+.aurelia-btn-dark:hover {
+  background: #C6A15B; color: #0B0B0B; border-color: #C6A15B;
+}
+
+/* Gold rule */
+.gold-rule {
+  display: flex; align-items: center; gap: 1rem;
+  justify-content: center;
+}
+.gold-rule::before, .gold-rule::after {
+  content: '';
+  display: block; height: 1px; width: 3rem;
+  background: #C6A15B; opacity: 0.5;
+}
+
+/* Product card hover */
+.product-card-img { transition: transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+.product-card:hover .product-card-img { transform: scale(1.06); }
+
+/* Image overlay */
+.img-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.5s ease;
+}
+.product-card:hover .img-overlay {
+  background: rgba(0,0,0,0.15);
+}
+
+/* ─── Admin utilities (kept as is) ──────────────────── */
+.hover-zoom:hover img { transform: scale(1.05); }
