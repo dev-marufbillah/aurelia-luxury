@@ -30,6 +30,7 @@ interface StorefrontProps {
   activeCategory?: string;
 }
 
+/* ─── Hero slides (5 Luxurious Dynamic Slides) ──────────────── */
 const heroSlides = [
   {
     image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2000&auto=format&fit=crop',
@@ -40,17 +41,30 @@ const heroSlides = [
   {
     image: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=2000&auto=format&fit=crop',
     tag: 'Signature Watches',
-    title: 'LUXURY,\nCURATED\nDIFFERENTLY.',
-    sub: 'Discover carefully selected pieces designed to elevate everyday moments.',
+    title: 'PRECISION.\nCRAFTED. ELEGANT.',
+    sub: 'Swiss-made timepieces that define a generation of excellence.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop',
-    tag: 'Aurelia House Edit',
-    title: 'MODERN.\nELEGANT.\nEXCLUSIVE.',
-    sub: 'A refined shopping destination for Dhaka’s most style-conscious clientele.',
+    image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=2000&auto=format&fit=crop',
+    tag: 'Exclusive Fragrance',
+    title: 'AURA OF\nSOPHISTICATION.',
+    sub: 'Bespoke scents crafted for the modern visionary and elegant soul.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=2000&auto=format&fit=crop',
+    tag: 'The Leather Edit',
+    title: 'UNCOMPROMISING\nQUALITY.',
+    sub: 'Handcrafted leather goods that age beautifully with your journey.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=2000&auto=format&fit=crop',
+    tag: 'Fine Jewelry',
+    title: 'BRILLIANCE.\nUNLEASHED.',
+    sub: 'Exquisite jewelry pieces reflecting pure elegance and grace.',
   },
 ];
 
+/* ─── Categories ────────────────────────────────────── */
 const categories = [
   { name: 'Perfume', image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=700&auto=format&fit=crop' },
   { name: 'Watches', image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=700&auto=format&fit=crop' },
@@ -59,6 +73,7 @@ const categories = [
   { name: 'Jewelry', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=700&auto=format&fit=crop' },
 ];
 
+/* ─── Testimonials ──────────────────────────────────── */
 const testimonials = [
   {
     name: 'Tasnim Rahman',
@@ -77,6 +92,7 @@ const testimonials = [
   },
 ];
 
+/* ─── Instagram Gallery ─────────────────────────────── */
 const galleryImages = [
   'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=500&auto=format&fit=crop',
@@ -86,10 +102,10 @@ const galleryImages = [
   'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=500&auto=format&fit=crop',
 ];
 
-export default function Storefront({ 
-  onAdminLogin, 
-  onAddToCart, 
-  cartCount: externalCartCount, 
+export default function Storefront({
+  onAdminLogin,
+  onAddToCart,
+  cartCount: externalCartCount,
   onCartOpen,
   onCategoryClick,
   onProductClick,
@@ -154,12 +170,14 @@ export default function Storefront({
         </div>
       )}
 
+      {/* 1. Announcement Bar */}
       <div className="bg-aurelia-black py-2 text-center">
         <p className="font-montserrat text-[10px] md:text-[11px] text-aurelia-ivory uppercase tracking-[0.32em] font-medium">
           — Complimentary Delivery on Orders Above ৳5,000 —
         </p>
       </div>
 
+      {/* 2. Premium Navigation */}
       <nav className={`sticky top-0 z-50 transition-all duration-500 ${
         scrolled ? 'bg-white/95 backdrop-blur-lg shadow-[0_1px_0_rgba(0,0,0,0.08)] h-[74px]' : 'bg-white h-[82px]'
       }`}>
@@ -168,6 +186,7 @@ export default function Storefront({
             <span className="font-playfair text-2xl md:text-[28px] font-bold tracking-[0.08em] text-aurelia-black uppercase">AURELIA</span>
           </button>
 
+          {/* Desktop Nav with Zoom & Underline */}
           <div className="hidden lg:flex items-center gap-8 font-montserrat text-[11.5px] font-bold uppercase tracking-[0.15em]">
             {['New Arrivals', 'Perfume', 'Watches', 'Eyewear', 'Bags & Leather', 'Jewelry', 'Gifts'].map((n) => {
               const isActive = activeCategory === n;
@@ -176,12 +195,13 @@ export default function Storefront({
                 <div key={n} className="relative group/nav">
                   <button 
                     onClick={() => onCategoryClick?.(n)} 
-                    className={`relative py-1 transition-colors duration-300 ${isActive ? 'text-aurelia-gold' : 'text-aurelia-black/90 hover:text-aurelia-gold'}`}
+                    className={`relative py-1 transition-transform duration-300 group ${isActive ? 'text-aurelia-gold scale-110' : 'text-aurelia-black/90 hover:text-aurelia-gold hover:scale-110'}`}
                   >
                     {n}
                     <span className={`absolute bottom-0 left-0 h-[1.5px] bg-aurelia-gold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'}`} />
                   </button>
-                  {/* Mega dropdown */}
+                  
+                  {/* Mega Dropdown Hover Effect */}
                   {matchedCat && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
                       <div className="bg-white border border-black/8 shadow-xl p-5 w-[240px] animate-fade-in">
@@ -204,6 +224,7 @@ export default function Storefront({
             })}
           </div>
 
+          {/* Icons */}
           <div className="flex items-center gap-4 md:gap-5">
             <div className="relative hidden sm:block">
               {showSearchInput ? (
@@ -251,6 +272,7 @@ export default function Storefront({
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="fixed inset-0 z-[100] bg-aurelia-black text-aurelia-ivory flex flex-col animate-fade-in">
           <div className="flex items-center justify-between px-8 pt-8 pb-10 border-b border-aurelia-border">
@@ -269,6 +291,7 @@ export default function Storefront({
         </div>
       )}
 
+      {/* 3. HERO (Dynamic 5 Slides) */}
       <section className="relative h-[620px] md:h-[620px] bg-aurelia-black overflow-hidden flex items-center">
         {heroSlides.map((s, i) => (
           <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ${i === heroIndex ? 'opacity-100' : 'opacity-0'}`}>
@@ -299,6 +322,7 @@ export default function Storefront({
           </div>
         </div>
 
+        {/* Slide Indicators (01 to 05) */}
         <div className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-3 text-aurelia-ivory/50">
           {heroSlides.map((_, i) => (
             <button key={i} onClick={() => setHeroIndex(i)} className={`text-[10px] font-montserrat tracking-[0.3em] ${i === heroIndex ? 'text-aurelia-gold' : 'hover:text-aurelia-ivory'}`}>
@@ -308,6 +332,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 4. EXPLORE THE COLLECTION */}
       <section className="py-10 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="gold-rule mb-6">
@@ -327,6 +352,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 5. NEW ARRIVALS */}
       <section className="py-10 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="flex items-end justify-between mb-6">
@@ -345,9 +371,11 @@ export default function Storefront({
                   <button onClick={(e) => { e.stopPropagation(); toggleLocalWishlist(product.id); }} className="absolute top-3 right-3 p-1.5 text-aurelia-black/55 hover:text-aurelia-gold transition-colors">
                     <Heart className={`w-4 h-4 ${localWishlist.includes(product.id) ? 'fill-aurelia-gold text-aurelia-gold' : ''}`} />
                   </button>
-                  <button onClick={(e) => { e.stopPropagation(); onProductClick?.(product); }} className="absolute bottom-3 right-3 p-1.5 text-aurelia-black/55 hover:text-aurelia-gold transition-colors opacity-0 group-hover:opacity-100">
-                    <Search className="w-4 h-4" />
-                  </button>
+                  <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-slow">
+                    <button onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }} className="w-full py-3 bg-aurelia-black text-aurelia-ivory font-montserrat text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-aurelia-gold hover:text-aurelia-black transition-colors">
+                      Add To Bag
+                    </button>
+                  </div>
                 </div>
                 <div>
                   <p className="font-montserrat text-[9px] font-bold uppercase tracking-[0.25em] text-aurelia-muted mb-1">{product.brand}</p>
@@ -361,6 +389,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 6. SIGNATURE COLLECTION */}
       <section className="bg-aurelia-black text-aurelia-ivory mt-4">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[360px]">
           <div className="relative overflow-hidden order-2 lg:order-1">
@@ -377,6 +406,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 7. THE AURELIA EDIT */}
       <section className="py-10 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="flex items-end justify-between mb-6">
@@ -413,6 +443,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 8. LUXURY BENEFITS */}
       <section className="py-8 bg-white border-t border-b border-black/5">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {[
@@ -431,6 +462,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 9. BRAND STORY */}
       <section className="bg-aurelia-black text-aurelia-ivory mt-4">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="relative overflow-hidden min-h-[320px]">
@@ -447,6 +479,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 10. GIFT BANNER */}
       <section className="relative h-[260px] md:h-[320px] overflow-hidden bg-aurelia-black">
         <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=1600&auto=format&fit=crop" alt="Gift collection" className="absolute inset-0 w-full h-full object-cover opacity-45" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20" />
@@ -459,6 +492,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 11. THE AURELIA EXPERIENCE */}
       <section className="py-14 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20 text-center">
           <div className="gold-rule mb-8">
@@ -481,24 +515,24 @@ export default function Storefront({
         </div>
       </section>
 
-      <section className="py-10 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20 text-center">
-          <div className="gold-rule mb-8">
-            <span className="font-montserrat text-[11px] font-bold uppercase tracking-[0.35em] text-aurelia-black">Follow The Aurelia World</span>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mt-8">
-            {galleryImages.map((img, idx) => (
-              <div key={idx} className="aspect-[5/4] overflow-hidden group relative cursor-pointer">
-                <img src={img} alt="gallery" className="w-full h-full object-cover transition-slow group-hover:scale-110" />
-                <div className="absolute inset-0 bg-aurelia-black/0 group-hover:bg-aurelia-black/20 transition-slow flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 transition-slow font-montserrat text-[9px] uppercase tracking-widest font-bold">View</span>
-                </div>
+      {/* 12. INSTAGRAM GALLERY */}
+      <section className="py-10 bg-white text-center">
+        <div className="gold-rule mb-8">
+          <span className="font-montserrat text-[11px] font-bold uppercase tracking-[0.35em] text-aurelia-black">Follow The Aurelia World</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 px-1">
+          {galleryImages.map((img, idx) => (
+            <div key={idx} className="aspect-[5/4] overflow-hidden group relative cursor-pointer">
+              <img src={img} alt="gallery" className="w-full h-full object-cover transition-slow group-hover:scale-110" />
+              <div className="absolute inset-0 bg-aurelia-black/0 group-hover:bg-aurelia-black/20 transition-slow flex items-center justify-center">
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-slow font-montserrat text-[9px] uppercase tracking-widest font-bold">View</span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
+      {/* 13. NEWSLETTER */}
       <section className="py-10 bg-aurelia-black text-aurelia-ivory">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 items-center border border-white/5 px-6 md:px-10 py-8">
@@ -514,6 +548,7 @@ export default function Storefront({
         </div>
       </section>
 
+      {/* 14. FOOTER */}
       <footer className="bg-aurelia-black text-aurelia-ivory border-t border-aurelia-border pt-12 pb-10 font-montserrat">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-14">
